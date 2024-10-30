@@ -1,28 +1,31 @@
-import {createSlice} from "@reduxjs/toolkit"
-
+import { createSlice } from "@reduxjs/toolkit";
 
 const userSlice = createSlice({
-    name : "user",
-    initialState : {
-        authUser : null,
-        chatItems : null,
-        currentUser: null,
+  name: "user",
+  initialState: {
+    authUser: null,
+    chatItems: null,
+    currentUser: null,
+    onlineUsers: null,
+  },
+
+  reducers: {
+    setAuthUser: (state, action) => {
+      state.authUser = action.payload;
     },
 
-    reducers : {
-        setAuthUser :(state,action) => {
-            state.authUser = action.payload;
-        },
+    setChatItems: (state, action) => {
+      state.chatItems = action.payload;
+    },
 
-        setChatItems : (state, action) => {
-            state.chatItems = action.payload;
-        },
-
-        setCurrentUser : (state, action) => {
-            state.currentUser = action.payload;
-        }
+    setCurrentUser: (state, action) => {
+      state.currentUser = action.payload;
+    },
+    setOnlineUsers : (state, action) => {
+        state.onlineUsers = action.payload;
     }
-})
+  },
+});
 
-export const {setAuthUser, setChatItems, setCurrentUser} = userSlice.actions;
+export const { setAuthUser, setChatItems, setCurrentUser, setOnlineUsers } = userSlice.actions;
 export default userSlice.reducer;

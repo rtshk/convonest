@@ -1,24 +1,37 @@
-import React, { useEffect } from 'react';
-import MainArea from './MainArea';
-import Sidebar from './Sidebar';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import MainArea from "./MainArea";
+import Sidebar from "./Sidebar";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import Profile from "./Profile";
 
 const Homepage = () => {
-
   const navigate = useNavigate();
-  const {authUser} = useSelector(store => store.user)
+  const { authUser } = useSelector((store) => store.user);
+  const [viewProfile, setviewProfile] = useState(false);
 
-  useEffect(()=>{
-    if(!authUser){
+  const profileHandler = () => {
+    if (!viewProfile) {
+      setviewProfile(true);
+    } else {
+      setviewProfile(false);
+    }
+  };
+
+  useEffect(() => {
+    if (!authUser) {
       navigate("/login");
     }
-  },[authUser])
+  }, [authUser]);
 
   return (
-    <div className='min-h-screen flex overflow-hidden bg-customGray'>
+    <div className="min-h-screen w-full flex overflow-hidden bg-customGray">
       <MainArea />
-      <Sidebar />
+      {viewProfile ? (
+        <Profile viewProfile={viewProfile} profileHandler={profileHandler} />
+      ) : (
+        <Sidebar viewProfile={viewProfile} profileHandler={profileHandler} />
+      )}
     </div>
   );
 };

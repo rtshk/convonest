@@ -1,11 +1,10 @@
 import React, { useEffect, useRef } from 'react'
 import Message from "./Message"
-import useGetMessages from '../../hooks/useGetMessages'
-import { useSelector } from 'react-redux';
+import useSocketMessage from '../../hooks/useSocketMessage';
 
 const MessageArea = ({currentUser, messages}) => {
+  useSocketMessage();
   const bottomMessage = useRef(null);
-
   useEffect(()=>{
     bottomMessage.current?.scrollIntoView({behavior : 'smooth'});
   }, [messages])

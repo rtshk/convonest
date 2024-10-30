@@ -5,24 +5,22 @@ const connectDB = require("./config/db");
 const userRoute = require("./routes/userRoute");
 const messageRoute = require("./routes/messageRoute");
 const cookieParser = require("cookie-parser");
-const authMiddleware = require("./middleware/authMiddleware");
-const app = express();
-
+const { app, server } = require("./socket/socket");
 //setting up middlewares
-app.use(cors({
-    origin: 'http://localhost:3000',  // Replace with your frontend URL
-    credentials: true
-  }));  
+app.use(
+  cors({
+    origin: "http://localhost:3000", // Replace with your frontend URL
+    credentials: true,
+  })
+);
 
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
-
 
 //initalizing variables
 env.config({});
 const PORT = process.env.PORT || 8000;
-
 
 //connecting to MongoDB
 connectDB();
@@ -31,4 +29,6 @@ connectDB();
 app.use("/user/authentication", userRoute);
 app.use("/user/homepage", messageRoute);
 
-app.listen(PORT, () => {console.log(`server listening to port ${PORT}`)});
+server.listen(PORT, () => {
+  console.log(`server listening to port ${PORT}`);
+});

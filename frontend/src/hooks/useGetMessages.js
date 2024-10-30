@@ -6,7 +6,6 @@ import { setMessages } from '../redux/messageSlice';
 const useGetMessages = () => {
     const {currentUser} = useSelector(store => store.user);
     const dispatch = useDispatch();
-    
     useEffect(()=>{
     const fetchMessages = async () => {
        try {

@@ -15,6 +15,7 @@ const MessageInput = ({ currentUser, messages }) => {
     e.preventDefault();
     try {
       if (message) {
+        console.log("sent succefully")
         const res = await axios.post(
           `http://localhost:8000/user/homepage/sendmessage/${currentUser?._id}`,
           { message },
@@ -42,7 +43,7 @@ const MessageInput = ({ currentUser, messages }) => {
         }}
       />
       <motion.button
-        className="bg-beige w-[10%] rounded-[20px]"
+        className="bg-beige w-[10%] rounded-[20px] min-w-[80px]"
         type="submit"
         variants={buttonVariants}
         whileTap={"tap"}
