@@ -42,12 +42,18 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        `http://localhost:8000/user/authentication/signup`,
-        user
-      );
-      navigate("/login");
-      toast(res.data.message);
+      console.log(user.password.length)
+      if(user.password.length < 8){
+        toast("password must be 8 characters long");
+      }
+      else{
+        const res = await axios.post(
+          `http://localhost:8000/user/authentication/signup`,
+          user
+        );
+        navigate("/login");
+        toast(res.data.message);
+      }
     } catch (error) {
       toast(error.response.data.message);
     }
