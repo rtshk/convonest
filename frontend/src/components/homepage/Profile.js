@@ -31,7 +31,7 @@ const Profile = ({profileHandler}) => {
   const handleLogout = async () => {
     try {
       const res = await axios.post(
-        `http://localhost:8000/user/authentication/logout`,
+        `${process.env.REACT_APP_BACKEND_URL}/user/authentication/logout`,
         {},
         { withCredentials: true }
       );

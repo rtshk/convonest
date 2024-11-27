@@ -17,6 +17,7 @@ exports.sendChatItems = async (req, res) => {
     });
     res.status(200).json(otherUsers);
   } catch (error) {
+    console.log("helo")
     console.log(error);
   }
 };

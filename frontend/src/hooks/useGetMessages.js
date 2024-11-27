@@ -10,7 +10,7 @@ const useGetMessages = () => {
     const fetchMessages = async () => {
        try {
         if (!currentUser?._id) return;
-        const res = await axios.get(`http://localhost:8000/user/homepage/receivemessage/${currentUser?._id}`, {withCredentials: true});
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/user/homepage/receivemessage/${currentUser?._id}`, {withCredentials: true});
         dispatch(setMessages(res.data?.messages));
        } catch (error) {
         console.log(error);

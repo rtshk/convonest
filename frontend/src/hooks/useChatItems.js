@@ -9,10 +9,10 @@ const useChatItems = () => {
   useEffect(()=>{
     const fetchChatItems = async () => {
       try {
-        const chatItems = await axios.get(`http://localhost:8000/user/homepage/`,{withCredentials:true});
+        const chatItems = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/user/homepage/`,{withCredentials:true});
         dispatch(setChatItems(chatItems.data));
       } catch (error) {
-          console.log("frontend error", error);
+          console.log(error);
       }
     }
     fetchChatItems();

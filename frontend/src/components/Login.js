@@ -11,7 +11,6 @@ const Login = () => {
     username: "",
     password: "",
   });
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const {authUser} = useSelector(store => store.user);
@@ -41,7 +40,6 @@ const Login = () => {
 
   useEffect(()=>{
     if(authUser != null){
-      console.log(authUser)
       navigate('/')
     }
   })
@@ -49,7 +47,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        `http://localhost:8000/user/authentication/login`,
+        `${process.env.REACT_APP_BACKEND_URL}/user/authentication/login`,
         user, {withCredentials : true}
       );
       toast.success("Logged In sucessfully")

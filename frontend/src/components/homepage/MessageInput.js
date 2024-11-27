@@ -15,9 +15,8 @@ const MessageInput = ({ currentUser, messages }) => {
     e.preventDefault();
     try {
       if (message) {
-        console.log("sent succefully")
         const res = await axios.post(
-          `http://localhost:8000/user/homepage/sendmessage/${currentUser?._id}`,
+          `${process.env.REACT_APP_BACKEND_URL}/user/homepage/sendmessage/${currentUser?._id}`,
           { message },
           { withCredentials: true }
         );

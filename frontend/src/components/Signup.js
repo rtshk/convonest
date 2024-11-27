@@ -42,20 +42,18 @@ const Signup = () => {
   };
   useEffect(()=>{
     if(authUser != null){
-      console.log(authUser)
       navigate('/')
     }
   })
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(user.password.length)
       if(user.password.length < 8){
         toast.error("password must be 8 characters long");
       }
       else{
         const res = await axios.post(
-          `http://localhost:8000/user/authentication/signup`,
+          `${process.env.REACT_APP_BACKEND_URL}/user/authentication/signup`,
           user
         );
         navigate("/login");

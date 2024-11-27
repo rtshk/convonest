@@ -9,7 +9,7 @@ const useSearchedUser = () => {
   useEffect(()=>{
     const getSearchedUser = async() => {
         try {
-            const gotUser = await axios.get("http://localhost:8000/user/homepage/search",{
+            const gotUser = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/user/homepage/search`,{
                 params: { searchedUser }, // Pass the search query
                 withCredentials: true,   // Include credentials (cookies)
               })
