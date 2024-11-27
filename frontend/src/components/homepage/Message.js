@@ -7,8 +7,8 @@ const Message = ({ currentUser, message }) => {
 
   return (
     <div
-      className={`my-3 mx-5 flex justify-${
-      isSender? "start" : "end"
+      className={`my-3 mx-5 flex ${
+      isSender? "justify-start" : "justify-end"
       }`}
     >
       <p

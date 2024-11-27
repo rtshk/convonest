@@ -35,7 +35,7 @@ const Profile = ({profileHandler}) => {
         {},
         { withCredentials: true }
       );
-      toast(res.data.message);
+      toast.success(res.data.message);
       dispatch(setAuthUser(null));
       dispatch(setChatItems([]));
       dispatch(setCurrentUser(null));
@@ -71,13 +71,7 @@ const Profile = ({profileHandler}) => {
           </div>
         </div>
 
-        <div>
-          <h2 className="text-gray-400">About</h2>
-          <div>
-            <p className="text-white">Hello I am new to this app</p>
-            <button></button>
-          </div>
-        </div>
+        
         <motion.button
           className="bg-beige rounded-[20px] p-2"
           onClick={handleLogout}

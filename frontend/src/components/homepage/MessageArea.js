@@ -10,7 +10,7 @@ const MessageArea = ({currentUser, messages}) => {
   }, [messages])
   
   return (
-    <div className='h-[580px] bg-lightGray rounded-[20px] my-4 overflow-auto scrollbar- scrollbar-thin scrollbar-thumb-maroon scrollbar-track-customGray'>
+    <div className='h-[580px] w-[100%]  bg-lightGray rounded-[20px] my-4 overflow-auto scrollbar- scrollbar-thin scrollbar-thumb-maroon scrollbar-track-customGray'>
       {messages?.map((message) => {
         return <Message key = {message?._id} message = {message} currentUser = {currentUser} />
        })}
