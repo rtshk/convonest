@@ -26,29 +26,29 @@ function App() {
     },
   ]);
   const { authUser } = useSelector((store) => store.user);
-  const {socket} = useSelector(store=>store.socket);
+  const { socket } = useSelector((store) => store.socket);
 
   useEffect(() => {
     if (authUser) {
-      const socketio = io(process.env.REACT_APP_BACKEND_URL, {
+      const socketio = io(`wss://convonestbackend.onrender.com`, {
         query: {
           userId: authUser?.userId,
         },
       });
       dispatch(setSocket(socketio));
 
-      socketio?.on('onlineUsers', (onlineUsers)=>{
-        if(onlineUsers !== undefined){
-        dispatch(setOnlineUsers(onlineUsers));
+      socketio?.on("onlineUsers", (onlineUsers) => {
+        if (onlineUsers !== undefined) {
+          dispatch(setOnlineUsers(onlineUsers));
         }
       });
-      
+
       return () => {
         socketio.close(); // Ensure cleanup to prevent multiple listeners
       };
-    }else{
-      if(socket){
-        socket.close();   
+    } else {
+      if (socket) {
+        socket.close();
         dispatch(setSocket(null));
       }
     }
