@@ -4,9 +4,9 @@ const userSlice = createSlice({
   name: "user",
   initialState: {
     authUser: null,
-    chatItems: null,
+    chatItems: [],
     currentUser: null,
-    onlineUsers: null,
+    onlineUsers: [],
     searchedUser: "",
     searchedUserList: [],
   },
