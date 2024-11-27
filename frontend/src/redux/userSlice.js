@@ -7,6 +7,8 @@ const userSlice = createSlice({
     chatItems: null,
     currentUser: null,
     onlineUsers: null,
+    searchedUser: "",
+    searchedUserList: [],
   },
 
   reducers: {
@@ -23,9 +25,15 @@ const userSlice = createSlice({
     },
     setOnlineUsers : (state, action) => {
         state.onlineUsers = action.payload;
+    },
+    setSearchedUser : (state, action) => {
+      state.searchedUser = action.payload;
+    },
+    setSearchedUserList : (state, action) => {
+      state.searchedUserList = action.payload;
     }
   },
 });
 
-export const { setAuthUser, setChatItems, setCurrentUser, setOnlineUsers } = userSlice.actions;
+export const { setAuthUser, setChatItems, setCurrentUser, setOnlineUsers, setSearchedUser, setSearchedUserList } = userSlice.actions;
 export default userSlice.reducer;

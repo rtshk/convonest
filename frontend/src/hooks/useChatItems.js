@@ -1,10 +1,11 @@
 import axios from 'axios'
 import React, { useEffect } from 'react'
-import {useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import { setChatItems } from '../redux/userSlice'
 
 const useChatItems = () => {
   const dispatch = useDispatch();
+  const {searchedUser} = useSelector(store => store.user);
   useEffect(()=>{
     const fetchChatItems = async () => {
       try {
@@ -15,7 +16,7 @@ const useChatItems = () => {
       }
     }
     fetchChatItems();
-  },[])
+  },[searchedUser])
 }
 
 export default useChatItems
