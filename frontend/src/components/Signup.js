@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useSelector } from "react-redux";
 
 const Signup = () => {
   const [user, setUser] = useState({
@@ -12,6 +13,7 @@ const Signup = () => {
   });
 
   const navigate = useNavigate();
+  const {authUser} = useSelector(store => store.user);
 
   const formBoxVariants = {
     hidden: { opacity: 0, scale: 0.8 },
@@ -38,13 +40,18 @@ const Signup = () => {
   const createAccoutVariants = {
     hover: { scale: 1.02 },
   };
-
+  useEffect(()=>{
+    if(authUser != null){
+      console.log(authUser)
+      navigate('/')
+    }
+  })
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       console.log(user.password.length)
       if(user.password.length < 8){
-        toast("password must be 8 characters long");
+        toast.error("password must be 8 characters long");
       }
       else{
         const res = await axios.post(
@@ -52,10 +59,10 @@ const Signup = () => {
           user
         );
         navigate("/login");
-        toast(res.data.message);
+        toast.success(res.data.message);
       }
     } catch (error) {
-      toast(error.response.data.message);
+      toast.error(error.response.data.message);
     }
   };
 

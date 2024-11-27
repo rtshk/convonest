@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate, Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setAuthUser } from "../redux/userSlice";
 import { motion } from "framer-motion";
 
@@ -14,6 +14,7 @@ const Login = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const {authUser} = useSelector(store => store.user);
 
   // Animation Variants
   const formBoxVariants = {
@@ -38,6 +39,12 @@ const Login = () => {
     hover : {scale : 1.02}
   }
 
+  useEffect(()=>{
+    if(authUser != null){
+      console.log(authUser)
+      navigate('/')
+    }
+  })
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -45,11 +52,11 @@ const Login = () => {
         `http://localhost:8000/user/authentication/login`,
         user, {withCredentials : true}
       );
-      toast("Logged In sucessfully")
+      toast.success("Logged In sucessfully")
       navigate("/");
       dispatch(setAuthUser(res.data));
     } catch (error) {
-      toast(error.response.data.message);
+      toast.error(error.response.data.message);
     }
   };
 
