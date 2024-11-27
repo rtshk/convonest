@@ -6,7 +6,7 @@ const authMiddleware = async (req, res, next) => {
     const token = req.cookies.token;
 
     if(!token){
-       return res.status(401).json({message : "token invalid"});
+       return res.status(401).json({message : "token not provided", givenToken : token });
     }
 
     const decode = jwt.verify(token,process.env.JWT_SECRET_KEY);
