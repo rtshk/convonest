@@ -4,9 +4,7 @@ const authMiddleware = async (req, res, next) => {
 
    try {
     const token = req.cookies.token;
-    console.log("given token")
-    console.log(token)
-    console.log("token end")
+
 
     if(!token){
        return res.status(401).json({message : "token not provided"});
