@@ -13,7 +13,7 @@ const useSocketMessage = () => {
     const notificationSound = new Howl({src : ['/notification.wav'],});
     useEffect(()=>{
         if(socket){
-            socket.on('newMessage', (newMessage, sender)=>{            
+            socket.on('newMessage', (newMessage, sender)=>{
                 if(newMessage?.senderId === currentUser?._id){
                     dispatch(setMessages([...messages,newMessage]));
                 }else{
@@ -25,7 +25,7 @@ const useSocketMessage = () => {
         return ()=>{
             socket?.off("newMessage");
         }
-    },[currentUser, dispatch, messages])
+    },[socket])
 }
 
 export default useSocketMessage

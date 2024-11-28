@@ -1,9 +1,8 @@
 import React, { useEffect, useRef } from 'react'
 import Message from "./Message"
-import useSocketMessage from '../../hooks/useSocketMessage';
 
 const MessageArea = ({currentUser, messages}) => {
-  useSocketMessage();
+  
   const bottomMessage = useRef(null);
   useEffect(()=>{
     bottomMessage.current?.scrollIntoView({behavior : 'smooth'});

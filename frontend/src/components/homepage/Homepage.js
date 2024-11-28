@@ -4,12 +4,13 @@ import Sidebar from "./Sidebar";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Profile from "./Profile";
+import useSocketMessage from '../../hooks/useSocketMessage';
 
 const Homepage = () => {
   const navigate = useNavigate();
   const { authUser } = useSelector((store) => store.user);
   const [viewProfile, setviewProfile] = useState(false);
-
+  useSocketMessage();
   const profileHandler = () => {
     if (!viewProfile) {
       setviewProfile(true);
