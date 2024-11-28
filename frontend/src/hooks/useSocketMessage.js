@@ -25,7 +25,7 @@ const useSocketMessage = () => {
         return ()=>{
             socket?.off("newMessage");
         }
-    },[socket])
+    },[socket,messages])
 }
 
 export default useSocketMessage
