@@ -70,10 +70,10 @@ exports.login = async (req, res) => {
         const token = jwt.sign(tokenData, process.env.JWT_SECRET_KEY, { expiresIn: '1d' });
 
         return res.status(201).cookie("token", token, {
-            httpOnly: true,              // Ensures the cookie is not accessible via JavaScript
-            secure: true,  // Use `secure: true` in production (over HTTPS)
-            sameSite: 'lax',           // Adjust according to your requirements
-            maxAge: 1 * 24 * 60 * 60 * 1000 // 1 day in milliseconds
+            httpOnly: true,              
+            secure: true,  
+            sameSite: 'none',          
+            maxAge: 1 * 24 * 60 * 60 * 1000 
         }).json({
             username,
             profilePhoto: user.profilePhoto,
@@ -89,9 +89,9 @@ exports.login = async (req, res) => {
 exports.logout = async (req, res) => {
     try {
         return res.clearCookie("token", {
-            httpOnly: true,            // Match the options used in `login`
-            secure: true,  // Use `secure: true` in production (over HTTPS)
-            sameSite: 'lax',
+            httpOnly: true,           
+            secure: true,  
+            sameSite: 'none',
         }).json({
             message: "Logged out successfully",
         });
